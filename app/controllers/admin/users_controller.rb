@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Successfully created User." 
-      redirect_to root_path
+      redirect_to admin_users_path
     else
       render :action => 'new'
     end
@@ -27,28 +27,30 @@ class Admin::UsersController < Admin::BaseController
 
 
   def update
-    @user = User.find(user_params)
+    @user = User.find(params[:id])
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = "Successfully updated User."
-      redirect_to root_path
+      redirect_to admin_users_path
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
     if @user.destroy
       flash[:notice] = "Successfully deleted User."
-      redirect_to root_path
+      redirect_to admin_users_path
+      else
+      flash[:alert] = "Error deleting user!"
     end
   end
 
   private
 
  	def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :status)
   end
 
   def find_user

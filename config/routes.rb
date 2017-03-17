@@ -7,6 +7,7 @@ Rails.application.routes.draw do
    get "/faq" => 'pages#faq'
    get "/terms_and_conditions" => 'pages#terms_and_conditions'
    get "/privacy_policy" => 'pages#privacy_policy'
+   get "/packages" => 'pages#packages'
   resources :banks
   devise_for :users, controllers: { registrations: 'user/registrations' }
 
