@@ -1,0 +1,94 @@
+<%= render(:partial=>"navbar") %>	
+
+		<br>
+						<br>
+						<br>
+	<div class="container-fluid">
+  <div class="row">
+    <h3 class="text-center">Dashboard</h3>
+    <div class="col-sm-4 col-xs-12">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User Information</h3>
+        </div>
+        <table class="table">
+          <thead>
+            <th>Personal Profile</th>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Name: <%= current_user.first_name %> <%= current_user.last_name %> </td>
+              </tr>
+              <tr>
+                <td>Email: <%= current_user.email %> </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Bank Information</h3>
+        </div>
+        <table class="table">
+          <thead>
+            <th>Bank Profile</th>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Bank: <%= current_user.bank.name %></td>
+              </tr>
+              <tr>
+                <td>Account Name: <%= current_user.bank.account_name %></td>
+              </tr>
+              <tr>
+                <td>Account Number: <%= current_user.bank.account_number %></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="col-sm-8 col-xs-12">
+      <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">UPLINK</h3>
+          </div>
+          <div class="panel-body">
+            Awaiting Pairing
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Referral</h3>
+          </div>
+          <div class="panel-body">
+          <%= link_to "Invite a user", new_user_invitation_path, :id => "button_id", :class => "btn btn-default" %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Account Status</h3>
+          </div>
+          <div class="panel-body">
+            <%= current_user.status.capitalize %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render(:partial=>"footer")%>

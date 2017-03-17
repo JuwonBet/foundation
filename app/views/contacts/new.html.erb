@@ -1,0 +1,238 @@
+	<%= render(:partial=>"navbar") %>	
+		
+	<!-- +++++ Contact Section +++++ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{margin-top:20px;}
+
+
+/*======= Contact ======*/
+
+.form-control {
+  box-shadow: none !important;
+  outline: none !important;
+  border: 2px solid #cecece;
+  height: 38px;
+}
+.form-control:hover ,.form-control:focus{
+  border-color: #97a0af;
+}
+
+
+.error {
+  margin: 8px 0px;
+  display: none;
+  color: red;
+}
+#ajaxsuccess {
+  font-size: 16px;
+  width: 100%;
+  display: none;
+  clear: both;
+  margin: 8px 0px;
+}
+.con_sub_text {
+  margin: 20px 0px;
+  font-size: 15px;
+}
+
+.contact-detail-box {
+  margin-bottom: 50px;
+}
+
+.contact-detail-box address {
+  font-size: 14px;
+}
+.contact-map {
+  background-color: #ededed;
+}
+
+.title-box .border,.btn-primary,.back-to-top,
+.logo i,.question-q-box,.social-circle li a:hover {
+  background-color: #3c8dbc !important;
+}
+.title-box .title-alt,.text-colored,.footer a:hover,
+.navbar-custom .navbar-nav li a:hover,
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active,
+.navbar-custom .navbar-nav li.active a {
+  color: #3c8dbc;
+}
+
+.btn-primary {
+  border: 1px solid #3c8dbc !important;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary,
+.btn-primary.active.focus, .btn-primary.active:focus, 
+.btn-primary.active:hover, .btn-primary:active.focus, 
+.btn-primary:active:focus, .btn-primary:active:hover, 
+.open>.dropdown-toggle.btn-primary.focus, 
+.open>.dropdown-toggle.btn-primary:focus, 
+.open>.dropdown-toggle.btn-primary:hover {
+  background-color: #d85600 !important;
+  border: 1px solid #d85600 !important;
+}
+
+.btn-shadow.btn-primary {
+  box-shadow: 1px 5px 9px rgba(241, 96, 1, 0.32);
+}
+
+
+
+/*======= Responsive ======*/
+@media (min-width: 768px) {
+    .nav-custom-left {
+		margin-left: 5%;
+	}
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .contact-page .col-sm-6 {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-custom {
+        -moz-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.1);
+    box-shadow: 0 2px 2px rgba(0,0,0,.1);
+  }
+  .screen-space {
+    margin: 0px auto 50px auto;
+  }
+  .feature-detail {
+    padding: 0px 0px 50px 30px !important;
+  }
+  .footer h5 {
+    margin-top: 30px;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  .blog-wrapper .blog-item {
+    width: 50%;
+  }
+  .navbar-custom .navbar-nav li a {
+    font-size: 12px;
+  }
+  .blog-detail-box {
+  padding-right: 0px;
+}
+}
+@media only screen and (min-width: 767px) and (max-width: 991px){
+  
+}
+@media (max-width: 767px) {
+  .blog-wrapper .blog-item {
+    width: 100%;
+  }
+  .logo {
+    margin-top: 7px;
+  }
+  .blog-detail-box {
+  padding-right: 0px;
+}
+}
+    </style>
+</head>
+<br>
+<br>
+<br>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets">
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <div class="contact-detail-box">
+            <i class="fa fa-th fa-3x text-colored"></i>
+            <h4>Get In Touch</h4>
+              E: <a href="fundfoundationnigeria@gmail.com" class="text-muted">fundfoundationnigeria@gmail.com</a>
+          </div>
+        </div><!-- end col -->
+
+        <div class="col-sm-4">
+          <div class="contact-detail-box">
+            <i class="fa fa-map-marker fa-3x text-colored"></i>
+            <h4>Our Location</h4>
+
+            <address>
+            Lekki Phase 1<br>
+            Lagos, Nigeria<br>
+          </address>
+          </div>
+        </div><!-- end col -->
+
+        <div class="col-sm-4">
+          <div class="contact-detail-box">
+            <i class="fa fa-book fa-3x text-colored"></i>
+            <h4>24x7 Support</h4>
+
+            <p>Our support runs 24/7 on all our platforms
+			</p>
+            <h4 class="text-muted">1234 567 890</h4>
+          </div>
+        </div><!-- end col -->
+
+      </div>
+      <!-- end row -->
+
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed/v1/place?q=Lekki+Lagos&amp;key=AIzaSyBSFRN6WWGYwmFi498qXXsD2UwkbmD74v4" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="width: 100%; height: 360px;"></iframe>
+          </div>
+        </div><!-- end col -->
+
+        <!-- Contact form -->
+        <div class="col-sm-6">
+        <div class="form-group">
+  <%= simple_form_for :contact, :html => {:class => 'form-horizontal' } do |f| %>
+    <%= f.input :name, :required => true %>
+    <%= f.input :email, :required => true %>
+    <%= f.input :message, :as => :text, :required => true %>
+    <div>
+      </br>
+      <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+</div>
+
+              </div> <!-- /col -->
+            </div> <!-- /row -->
+
+          </form> <!-- /form -->
+        </div> <!-- end col -->
+
+      </div> <!-- end row -->
+          
+    </div>
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>
+
+	<%= render(:partial=>"footer")%>

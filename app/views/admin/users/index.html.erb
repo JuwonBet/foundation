@@ -1,0 +1,48 @@
+<div class="container-fluid">
+	<h2 class="text-center">Manage Users</h2>
+
+	<div class="row">
+		<div class="col-sm-12 col-xs-12">
+		  <%= link_to "Add User", new_admin_user_path, class: "btn btn-primary pull-right" %>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+		<div class="col-sm-12 col-xs-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr class="text-center">
+              <th>ID</th>
+              <th>Email</th>
+              <th>Created</th>
+              <th>Last Login</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.email %></td>
+              <td><%= user.created_at.strftime('%b %d, %Y') %></td>
+              <td><%= user.last_sign_in_at.strftime('%b %e, %H:%M') if user.last_sign_in_at %></td>
+              <td>
+                  <% if user.activated? %>
+                    <%= link_to "Deactivate", admin_user_path(user, user: {:status => :deactivated}), method: :put, data: {:confirm => "Deactivated?"}, title: "Deactivated" %>
+                  <% else %>
+                    <%= link_to "Activate", admin_user_path(user, user: {status: :activated}), method: :put, data: {:confirm => "Activated?"}, title: "Activated" %>
+                <% end %>
+                <%= link_to "Edit", edit_admin_user_path(user), title: "Edit" %>
+                <%= link_to "Delete", admin_user_path(user), data: {confirm: "Are you sure?"}, method: :delete, title: "Delete" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+		</div>
+	</div>
+</div>

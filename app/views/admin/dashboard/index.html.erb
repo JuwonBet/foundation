@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3 class="text-center">Dashboard</h3>
+    <div class="col-sm-4 col-xs-12">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Recent Matches</h3>
+        </div>
+        <table class="table">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <% Match.ordered.limit(3).each do |match| %>
+              <tr>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="panel-footer">
+          <%= link_to "...", admin_matches_path %>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Recent Users</h3>
+        </div>
+        <table class="table">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <% User.ordered.limit(3).each do |teamadmin| %>
+              <tr>
+                <td><%= teamadmin.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="panel-footer">
+          <%= link_to "...", admin_users_path %>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-8 col-xs-12">
+      <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 col-xs-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel title</h3>
+          </div>
+          <div class="panel-body">
+            Panel content
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
