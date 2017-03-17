@@ -23,6 +23,12 @@
               <tr>
                 <td>Email: <%= current_user.email %> </td>
               </tr>
+              <tr>
+                <td>Phone Number: <%= current_user.phone_number %> </td>
+              </tr>
+              <tr>
+                <td>Account Status: <%= current_user.status.capitalize %> </td>
+              </tr>
           </tbody>
         </table>
       </div>
@@ -74,21 +80,31 @@
         </div>
 
       </div>
-
+      
       <div class="col-sm-6 col-xs-12">
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Account Status</h3>
+            <h3 class="panel-title">Proof Of Payment</h3>
           </div>
           <div class="panel-body">
-            <%= current_user.status.capitalize %>
+          <%= link_to "upload pop", new_user_invitation_path, :id => "button_id", :class => "btn btn-default" %>
           </div>
         </div>
-
-      </div>
+        
     </div>
+    
   </div>
+  <div class="col-sm-8 col-xs-12">
+      <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">DOWNLINK</h3>
+          </div>
+          <div class="panel-body">
+            Awaiting Pairing
+          </div>
+        </div>
+      </div>
 </div>
-
 <%= render(:partial=>"footer")%>

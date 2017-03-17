@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
   devise_for :admins
 	root to: "pages#index"
 	 get "/ideologies" => 'pages#ideologies'
