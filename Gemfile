@@ -62,6 +62,7 @@ gem 'mail_form', '~> 1.6'
 gem 'simple_form', '~> 3.4'
 gem 'pg', '~> 0.20.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
+gem 'less-rails'
 
 
 group :production do
