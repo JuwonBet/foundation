@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
   has_many :received_messages, class_name: "Message", foreign_key: "receiver_id"
   scope :ordered, -> { order('created_at desc') }
-  
+  has_one :phone_number
   enum status: [:activated, :deactivated]
 
   before_save :set_user_status, if: :new_record?
