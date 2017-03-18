@@ -12,4 +12,9 @@ class PagesController < ApplicationController
   
   def about
   end 
+  
+  def packages
+    
+  end
+  
 end
