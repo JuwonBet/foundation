@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+# em 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -62,7 +62,9 @@ gem 'mail_form', '~> 1.6'
 gem 'simple_form', '~> 3.4'
 gem 'pg', '~> 0.20.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
-gem 'less-rails'
+
+
+
 
 
 group :production do
