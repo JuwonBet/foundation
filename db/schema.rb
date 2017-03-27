@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317120957) do
+ActiveRecord::Schema.define(version: 20170326115531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 20170317120957) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "bank_lists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "thumb_url"
+  end
+
   create_table "banks", force: :cascade do |t|
     t.string   "name"
     t.string   "account_name"
@@ -45,9 +51,9 @@ ActiveRecord::Schema.define(version: 20170317120957) do
   create_table "matches", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "matched_user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "matched_user_ids",              array: true
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "completion_status"
     t.index ["matched_user_id"], name: "index_matches_on_matched_user_id", using: :btree
     t.index ["user_id", "matched_user_id"], name: "index_matches_on_user_id_and_matched_user_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_matches_on_user_id", using: :btree
@@ -60,6 +66,32 @@ ActiveRecord::Schema.define(version: 20170317120957) do
     t.integer  "receiver_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string  "name"
+    t.string  "description"
+    t.decimal "price"
+  end
+
+  create_table "proof_uploads", force: :cascade do |t|
+    t.integer  "match_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "account_name"
+    t.string   "account_number"
+    t.string   "phone_number"
+    t.string   "proof_url"
+    t.index ["match_id"], name: "index_proof_uploads_on_match_id", using: :btree
+  end
+
+  create_table "user_packages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "package_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_user_packages_on_package_id", using: :btree
+    t.index ["user_id"], name: "index_user_packages_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,5 +131,6 @@ ActiveRecord::Schema.define(version: 20170317120957) do
   add_foreign_key "banks", "users"
   add_foreign_key "matches", "users"
   add_foreign_key "matches", "users", column: "matched_user_id"
+  add_foreign_key "proof_uploads", "matches"
   add_foreign_key "users", "banks"
 end

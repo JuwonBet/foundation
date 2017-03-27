@@ -1,0 +1,85 @@
+<%= render(:partial=>"navbar") %>
+<div class="container" style="margin-top: 100px">
+  <div class="lead col-sm-12" style="font-size: 20px"> Pending proof confirmations<hr></div>
+  <div class="lead col-sm-12" id="container-proof" style="padding: 10px; background-color: #f7f7f7"></div>
+</div>
+
+<script defer>
+   var proofContainer = document.getElementById('container-proof');
+
+  function httpGetAsync(theUrl, callback)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        callback(xmlHttp.response);
+      }
+    };
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+  }
+
+  function populateProofContainer() {
+    httpGetAsync('/user/confirm_proof/list/unconfirmed', function (response) {
+      response = JSON.parse(response);
+
+      if (response.status == 'SUCCESS') {
+        var responseData = response.data;
+
+        if (responseData.length != 0) {
+
+          responseData.forEach(function(upload) {
+
+            var rowNode = document.createElement('div');
+            rowNode.setAttribute('class', 'row proof-item');
+            rowNode.setAttribute('data-proof-id', upload.id);
+            rowNode.style.marginBottom = '5px';
+
+            var userNameNode = document.createElement('div');
+            userNameNode.setAttribute('class', 'col-sm-4');
+            userNameNode.innerHTML = 'Username: ' + upload.account_name;
+
+            var phoneNumberNode = document.createElement('div');
+            phoneNumberNode.setAttribute('class', 'col-sm-4');
+            phoneNumberNode.innerHTML = 'Phone number: ' + upload.phone_number;
+
+            var downloadForm = document.createElement('form');
+            downloadForm.setAttribute('method', 'get');
+            downloadForm.setAttribute('action', '/user/confirm/proof/download/' + upload.id);
+
+            var downloadButton = document.createElement('button');
+            downloadButton.setAttribute('class', 'btn btn-primary col-sm-2');
+            downloadButton.setAttribute('role', 'button');
+            downloadButton.innerHTML = 'Download proof';
+
+            downloadForm.appendChild(downloadButton);
+
+            var confirmForm = document.createElement('form');
+            confirmForm.setAttribute('method', 'get');
+            confirmForm.setAttribute('action', '/user/confirm_proof/verify/' + upload.id);
+
+            var confirmButton = document.createElement('button');
+            confirmButton.setAttribute('class', 'btn btn-primary col-sm-2');
+            confirmButton.setAttribute('role', 'button');
+            confirmButton.innerHTML = 'Confirm proof';
+
+            confirmForm.appendChild(confirmButton);
+
+            rowNode.appendChild(userNameNode);
+            rowNode.appendChild(phoneNumberNode);
+            rowNode.appendChild(downloadForm);
+            rowNode.appendChild(confirmForm);
+
+            proofContainer.appendChild(rowNode);
+
+          });
+
+        } else {
+          proofContainer.innerHTML = 'Nothing to confirm'
+        }
+      }
+    });
+  }
+
+  populateProofContainer();
+</script>

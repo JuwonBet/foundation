@@ -1,0 +1,18 @@
+<%= render(:partial=>"navbar") %>
+<div class="row" style="margin-top: 100px">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" style="background-color: #f7f7f7; padding: 10px">
+    <div class="col-sm-12 lead" style="font-size: 20px">
+      Upload Proof of Payment
+    </div>
+    <%= form_tag("/user/upload_proof", multipart: true, method: "post", class: 'form-group') do %>
+        <%= text_field_tag(:user_name, '', class:'form-control lead', placeholder: 'Username', required: true) %>
+        <%= number_field_tag(:account_number, '', class: 'form-control lead', placeholder: 'Account number', required: true) %>
+        <%= phone_field_tag(:phone_number, '', class: 'form-control lead', placeholder: 'Phone number', required: true) %>
+        <%= text_field_tag(:match_id, '', class: 'form-control lead', placeholder: 'ID', required: true) %>
+        <%= file_field_tag :upload_file, class: 'form-control lead', accept: 'jpeg,jpg',required: true %>
+        <%= submit_tag("Upload", class: 'form-control btn btn-primary') %>
+    <% end %>
+  </div>
+  <div class="col-sm-4"></div>
+</div>

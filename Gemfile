@@ -63,10 +63,12 @@ gem 'simple_form', '~> 3.4'
 gem 'pg', '~> 0.20.0'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
 
-
-
-
-
 group :production do
   gem 'rails_12factor', '~> 0.0.3'
 end
+
+# Gem for definition of cron jobs
+gem 'whenever', :require => false
+
+# Gem for AWS
+gem 'aws-sdk', '~> 2.3'

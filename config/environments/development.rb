@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -53,7 +53,31 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Delivery option for mails sent in development
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp   #:letter_opener
+
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               ENV['SMTP_DOMAIN'],
+      user_name:            ENV['SMTP_USERNAME'],
+      password:             ENV['SMTP_PASSWORD'],
+      authentication:       'plain',
+      enable_starttls_auto: true
+  }
   
   config.action_mailer.default_url_options = { :host => 'localhost' }
+
+  # ActionMailer configurations
+  config.action_mailer.perform_deliveries = true
+
+  # AWS environment configurations
+  #config.paperclip_defaults = {
+  #    storage: :s3,
+  #    s3_credentials: {
+  #        bucket: ENV.fetch('S3_BUCKET_NAME'),
+  #        access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+  #        secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+  #        s3_region: ENV.fetch('AWS_REGION'),
+  #    }
+  #}
 end
