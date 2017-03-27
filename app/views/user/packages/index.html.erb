@@ -1,0 +1,255 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<link href="assets/packages.scss" rel="stylesheet">
+<div class="container content">
+  <div class="row">
+    <!-- Pricing -->
+    <div class="col-md-3">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Beginner <span>
+					 </span>
+          </h3>
+          <h4><i>N</i>10,000<i>.00</i>
+            <span>
+					 </span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+
+          <li>
+            Consecte adiping elit
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+          </p>
+          <button href="javascript:;" class="btn yellow-crusta item-btn" style="background-color: blue" id="btn-package-beginner">
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Pro <span>
+					</span>
+          </h3>
+          <h4><i>N</i>20,000<i>.00</i>
+            <span>
+					 </span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+
+          <li>
+            Consecte adiping elit
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+          </p>
+          <button href="javascript:;" class="btn yellow-crusta item-btn" style="background-color: blue" id="btn-package-pro">
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="pricing pricing-active hover-effect">
+        <div class="pricing-head pricing-head-active">
+          <h3>Expert <span>
+					 </span>
+          </h3>
+          <h4><i>N</i>50,000<i>.00</i>
+            <span>
+					</span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+
+          <li>
+            Consecte adiping elit
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+          </p>
+          <button href="javascript:;" class="btn yellow-crusta item-btn" style="background-color: blue" id="btn-package-expert">
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Hi-Tech <span>
+					 </span>
+          </h3>
+          <h4><i>N</i>100,000<i>.00</i>
+            <span>
+					</span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+          <li>
+            Coming Soon
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna psum olor .
+          </p>
+          <button href="javascript:;" class="btn yellow-crusta item-btn" style="background-color: blue" id="btn-package-hi-tech">
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--//End Pricing -->
+    </div>
+  <div class="row" style="margin-top: 15px">
+    <div class="col-sm-4"></div>
+    <button class="col-sm-4 btn btn-primary" id="submit-button">Continue</button>
+    <div class="col-sm-4"></div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<script defer>
+    var selectedPackage = null;
+    var beginnerPackageSelectionButton = document.getElementById("btn-package-beginner");
+    var proPackageSelectionButton = document.getElementById("btn-package-pro");
+    var expertPackageSelectionButton = document.getElementById("btn-package-expert");
+    var hiTechPackageSelectionButton = document.getElementById("btn-package-hi-tech");
+    var submitButton = document.getElementById('submit-button');
+
+    var selectecdItemStack = [];
+
+    function popSelectedItem() {
+      if (selectecdItemStack.length != 0) {
+        var selectedItem = selectecdItemStack.pop();
+        selectedItem.style.backgroundColor = 'blue';
+        selectedItem.innerHTML = 'Select';
+      }
+    }
+
+    function sendSelectedPackage(selectesPackageID) {
+      function httpGetAsync(theUrl, callback)
+      {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            callback(xmlHttp.responseText);
+          }
+        };
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+      }
+
+      console.log('/user/packages/'+selectesPackageID);
+      httpGetAsync('/user/packages/'+selectesPackageID, function(responseText) {
+
+        function setUpWindow(callback) {
+          document.write(responseText);
+          callback()
+        }
+
+        setUpWindow(function () {
+          window.history.pushState(responseText, 'Fund Foundation', '/user/banks/new');
+        });
+      })
+    }
+
+    beginnerPackageSelectionButton.onclick = function () {
+      if (selectedPackage != 1) {
+        popSelectedItem();
+
+        selectedPackage = 1;
+        beginnerPackageSelectionButton.style.backgroundColor = 'red';
+        beginnerPackageSelectionButton.innerHTML = 'Remove';
+
+        selectecdItemStack.push(beginnerPackageSelectionButton);
+      } else {
+        selectedPackage = null;
+        beginnerPackageSelectionButton.style.backgroundColor = 'blue';
+        beginnerPackageSelectionButton.innerHTML = 'Select';
+      }
+
+    };
+
+    proPackageSelectionButton.onclick = function () {
+      if (selectedPackage != 2) {
+        popSelectedItem();
+
+        selectedPackage = 2;
+        proPackageSelectionButton.style.backgroundColor = 'red';
+        proPackageSelectionButton.innerHTML = 'Remove';
+
+        selectecdItemStack.push(proPackageSelectionButton);
+      } else {
+        selectedPackage = null;
+        proPackageSelectionButton.style.backgroundColor = 'blue';
+        proPackageSelectionButton.innerHTML = 'Select';
+      }
+
+    };
+
+    expertPackageSelectionButton.onclick = function () {
+      if (selectedPackage != 3) {
+        popSelectedItem();
+
+        selectedPackage = 3;
+        expertPackageSelectionButton.style.backgroundColor = 'red';
+        expertPackageSelectionButton.innerHTML = 'Remove';
+
+        selectecdItemStack.push(expertPackageSelectionButton);
+      } else {
+        selectedPackage = null;
+        expertPackageSelectionButton.style.backgroundColor = 'blue';
+        expertPackageSelectionButton.innerHTML = 'Select';
+      }
+
+    };
+
+    hiTechPackageSelectionButton.onclick = function () {
+      if (selectedPackage != 4) {
+        popSelectedItem();
+
+        selectedPackage = 4;
+        hiTechPackageSelectionButton.style.backgroundColor = 'red';
+        hiTechPackageSelectionButton.innerHTML = 'Remove';
+
+        selectecdItemStack.push(hiTechPackageSelectionButton);
+      } else {
+        selectedPackage = null;
+        hiTechPackageSelectionButton.style.backgroundColor = 'blue';
+        hiTechPackageSelectionButton.innerHTML = 'Select';
+      }
+
+    };
+
+    submitButton.onclick = function () {
+      if (selectedPackage == null) {
+        alert('Please select your preferred package.');
+      } else {
+        sendSelectedPackage(selectedPackage);
+      }
+    }
+
+</script>

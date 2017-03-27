@@ -16,5 +16,9 @@ class PagesController < ApplicationController
   def packages
     
   end
+
+  def select_package
+
+  end
   
 end

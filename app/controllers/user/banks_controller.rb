@@ -24,7 +24,10 @@ class User::BanksController < User::BaseController
   # POST /banks
   # POST /banks.json
   def create
-    @bank = Bank.new(bank_params)
+    bank_id = params[:banks_menu]
+    bank_parameters = bank_params
+    bank_parameters[:name] = BankList.find(bank_id).name
+    @bank = Bank.new(bank_parameters)
     @bank.user_id = current_user.id
 
     respond_to do |format|
@@ -62,6 +65,12 @@ class User::BanksController < User::BaseController
     end
   end
 
+  # Endpoint for GET /banks/list
+  # Responds with a list of all available banks
+  def list
+    render json: { status: 'SUCCESS', data: BankList.all }, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bank
@@ -70,6 +79,7 @@ class User::BanksController < User::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_params
-      params.require(:bank).permit(:name, :account_name, :account_number, :user_id)
+      params.require(:bank).permit(:account_name, :account_number, :user_id, :banks_menu)
     end
+
 end

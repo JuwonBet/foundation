@@ -18,3 +18,12 @@
 
 # Ignore application configuration
 /config/application.yml
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+run.sh
+out
+gen

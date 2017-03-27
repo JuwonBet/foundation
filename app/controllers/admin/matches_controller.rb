@@ -24,7 +24,6 @@ class Admin::MatchesController < Admin::BaseController
   end
 
   private
-
   def match_params
   	params.require(:match).permit(:user_id, matched_user_id: [])
   end

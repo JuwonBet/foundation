@@ -1,0 +1,2 @@
+module User::UploadProofHelper
+end

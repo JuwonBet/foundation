@@ -1,32 +1,71 @@
-<%= form_for([:user, @bank]) do |f| %>
-  <% if bank.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:</h2>
 
-      <ul>
-      <% bank.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="container">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" style="background-color: #f7f7f7; padding: 10px">
+    <%= form_for([:user, @bank], html: { class: 'form-group'}) do |f| %>
+        <% if bank.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:</h2>
+
+              <ul>
+                <% bank.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <select class="form-control lead" name="banks_menu" id="banks_menu">
+        </select>
+
+        <div class="field">
+          <%= f.label :account_name %>
+          <%= f.text_field :account_name, class: 'form-control lead' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :account_number %>
+          <%= f.text_field :account_number, class: 'form-control lead' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit class: 'form-control btn btn-primary' %>
+        </div>
+    <% end %>
+    <div class="col-sm-4"></div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :account_name %>
-    <%= f.text_field :account_name %>
-  </div>
+<script defer>
+  var bankOptionsMenu = document.getElementById('banks_menu');
 
-  <div class="field">
-    <%= f.label :account_number %>
-    <%= f.text_field :account_number %>
-  </div>
+  function httpGetAsync(theUrl, callback)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+        callback(xmlHttp.response);
+      }
+    };
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+  }
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  httpGetAsync('/user/banks/list', function(response) {
+    response = JSON.parse(response);
+
+    if (response.status == 'SUCCESS') {
+      var responseData = response.data;
+
+      responseData.forEach(function(bank) {
+        var optionNode = document.createElement('option');
+        optionNode.value = bank.id;
+        optionNode.innerHTML = bank.name;
+
+        bankOptionsMenu.appendChild(optionNode);
+      })
+    }
+  })
+</script>
+

@@ -63,7 +63,7 @@
           <div class="panel-heading">
             <h3 class="panel-title">UPLINK</h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" id="container-uplink">
             Awaiting Pairing
           </div>
         </div>
@@ -86,11 +86,11 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Proof Of Payment</h3>
+            <h3 class="panel-title">Proof Of Payment (pop)</h3>
           </div>
           <div class="panel-body">
-          <%= link_to "upload pop", new_message_path, :id => "button_id", :class => "btn btn-default" %>
-          <%= link_to "confirm pop", new_message_path, :id => "button_id", :class => "btn btn-default" %>
+          <%= link_to "upload pop", '/user/upload_proof', :id => "button_id", :class => "btn btn-default" %>
+          <%= link_to "confirm pop", '/user/confirm_proof', :id => "button_id", :class => "btn btn-default" %>
           </div>
         </div>
         
@@ -103,10 +103,58 @@
           <div class="panel-heading">
             <h3 class="panel-title">DOWNLINK</h3>
           </div>
-          <div class="panel-body">
+          <div class="panel-body" id="container-downlink">
             Awaiting Pairing
           </div>
         </div>
       </div>
 </div>
+    <script defer>
+      var upLinkContainer = document.getElementById('container-uplink');
+      var downLinkContainer = document.getElementById('container-downlink');
+
+      function httpGetAsync(theUrl, callback)
+      {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            callback(xmlHttp.response);
+          }
+        };
+        xmlHttp.open("GET", theUrl, true);
+        xmlHttp.send(null);
+      }
+
+      function populateMatchContainers() {
+        httpGetAsync('/user/match/uplink', function(response) {
+          response = JSON.parse(response);
+
+          if (response.status == 'SUCCESS') {
+            var responseData = response.data;
+
+            if (responseData.length != 0) {
+              upLinkContainer.innerHTML = 'Username:  '+responseData.first_name + ' ' + responseData.last_name +
+                  '<br>Account Number:  ' + responseData.account_number + '<br>Phone Number:  ' + responseData.phone_number +
+                  '<br>ID: ' + responseData.match_id;
+            }
+          }
+        });
+
+        httpGetAsync('/user/match/downlink', function(response) {
+          response = JSON.parse(response);
+
+          if (response.status == 'SUCCESS') {
+            var responseData = response.data;
+
+            if (responseData.length != 0) {
+              downLinkContainer.innerHTML = 'Username: '+responseData.first_name + ' ' + responseData.last_name +
+                  '<br>Phone Number: ' + responseData.phone_number;
+            }
+          }
+        })
+      }
+
+      populateMatchContainers();
+    </script>
+
 <%= render(:partial=>"footer")%>

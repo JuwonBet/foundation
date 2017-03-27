@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_one :bank
 
+  has_one :package, through: :user_packages
+  has_one :user_package
+
   has_many :matches
   has_many :matched_users, through: :matches
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
