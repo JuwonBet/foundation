@@ -21,6 +21,9 @@ ENV['RAILS_ENV'] = "development"
 # Learn more: http://github.com/javan/whenever
 set :environment, "development"
 
-every 1.minute do
+every 1.hour do
   rake 'match_beginner_package_users'
+  rake 'match_pro_package_users'
+  rake 'match_expert_package_users'
+  rake 'match_hit_tech_package_users'
 end
