@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   authenticate :user do
   	namespace :user do
-      #get '/user_packages', to: 'user_packages#index'
   		get '/dashboard', to: 'dashboard#index'
       get '/banks/list', to: 'banks#list'
       get '/match/uplink', to: 'matches#get_up_link_matches'
