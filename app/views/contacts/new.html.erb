@@ -10,40 +10,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-    	body{margin-top:20px;}
-
-
+    	body{ margin-top:20px; }
+    </style>
 </head>
-<br>
-<br>
-<br>
 <body>
+<br>
+<br>
+<br>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container bootstrap snippets">
+<div class="container bootstrap snippets" style="margin-top: 100px">
+      <!--
       <div class="row text-center">
         <div class="col-sm-4">
           <div class="contact-detail-box">
             <i class="fa fa-th fa-3x text-colored"></i>
             <h4>Get In Touch</h4>
-              E: <a href="fundfoundationnigeria@gmail.com" class="text-muted">fundfoundationnigeria@gmail.com</a>
+              Email: <a href="mailto:fundfoundationnigeria@gmail.com" class="text-muted">fundfoundationnigeria@gmail.com</a>
           </div>
-        </div><!-- end col -->
+        </div>
       </div>
-      <!-- end row -->
-        <!-- Contact form -->
-        <div class="col-sm-6">
-        <div class="form-group">
-  <%= simple_form_for :contact, :html => {:class => 'form-horizontal' } do |f| %>
-    <%= f.input :name, :required => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :message, :as => :text, :required => true %>
-    <div>
-      </br>
-      <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
+      -->
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" style="background-color: #f7f7f7; padding: 10px">
+    <div class="col-sm-12 lead">
+      Get in touch (<a href="mailto:fundfoundationnigeria@gmail.com"> Send a mail</a> )
     </div>
-  <% end %>
-</div>
-</div>
+    <div class="form-group">
+      <%= simple_form_for :contact, html: {class: 'form-horizontal form-group' } do |f| %>
+          <%= f.input :name, :required => true, input_html: { class: 'form-control' } %>
+          <%= f.input :email, :required => true, input_html: { class: 'form-control' } %>
+          <%= f.input :message, :as => :text, :required => true, input_html: { class: 'form-control' } %>
+          <div>
+            </br>
+            <%= f.button :submit, 'Send message', :class=> 'btn btn-primary form-control' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
 
               </div> <!-- /col -->
             </div> <!-- /row -->
