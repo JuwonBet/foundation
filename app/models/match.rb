@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-	before_save :set_completion_status
+	before_create :set_completion_status
 
 	belongs_to :user
 	belongs_to :matched_user, class_name: "User"
