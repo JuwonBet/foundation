@@ -16,16 +16,20 @@
           <thead>
             <tr class="text-center">
               <th>ID</th>
+              <th>Full name</th>
               <th>Email</th>
               <th>Created</th>
               <th>Last Login</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td><%= user.first_name %></td>
+                <td><%= user.id %></td>
+                <td><%= user.first_name << ' ' << user.last_name%></td>
+                <td><%= user.email %></td>
+                <td><%= user.created_at %></td>
+                <td><%= user.last_sign_in_at %></td>
               </tr>
               <% user.matched_users do |matched_user| %>
                 <tr>
