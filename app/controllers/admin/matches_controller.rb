@@ -11,7 +11,7 @@ class Admin::MatchesController < Admin::BaseController
   def create
     @user = User.find(match_params[:user_id])
     @user.matched_user_ids = match_params[:matched_user_id]
-    
+
      respond_to do |format|
         if @user.save
           format.html { redirect_to admin_dashboard_path, notice: 'matches were successfully created.' }
