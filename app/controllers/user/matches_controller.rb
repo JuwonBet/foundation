@@ -8,15 +8,45 @@ class User::MatchesController < ApplicationController
       user_id = current_user.id
 
       if Match.exists?(matched_user_id: user_id, completion_status: 'pending')
-        match = Match.find_by(matched_user_id: user_id, completion_status: 'pending')
-        down_link_user = User.find_by(id: match.user_id)
+        match = Match.where(matched_user_id: user_id, completion_status: 'pending')
 
-        render json: { status: 'SUCCESS', data: {
-            first_name: down_link_user.first_name,
-            last_name: down_link_user.last_name,
-            phone_number: down_link_user.phone_number,
-            user_id: down_link_user.id
-        }}, status: :ok
+        if match.length > 1
+          down_link_users = []
+
+          match.each do |m|
+            down_link_user = User.find_by(id: m.user_id)
+            down_link_users.push(down_link_user)
+          end
+        else
+          down_link_users = User.find_by(id: match[0].user_id)
+        end
+        #down_link_user = User.find_by(id: match.user_id)
+
+        if down_link_users.is_a?(Array)
+          render json: { status: 'SUCCESS', data: [
+              {
+                  first_name: down_link_users[0].first_name,
+                  last_name: down_link_users[0].last_name,
+                  phone_number: down_link_users[0].phone_number,
+                  user_id: down_link_users[0].id
+              },
+              {
+                  first_name: down_link_users[1].first_name,
+                  last_name: down_link_users[1].last_name,
+                  phone_number: down_link_users[1].phone_number,
+                  user_id: down_link_users[1].id
+              }
+          ]}, status: :ok
+        else
+          render json: { status: 'SUCCESS', data: [
+              {
+                  first_name: down_link_users.first_name,
+                  last_name: down_link_users.last_name,
+                  phone_number: down_link_users.phone_number,
+                  user_id: down_link_users.id
+              }
+          ]}, status: :ok
+        end
       else
         render json: { status: 'SUCCESS', data: '' }, status: :ok
       end
