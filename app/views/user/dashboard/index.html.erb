@@ -133,7 +133,8 @@
             var responseData = response.data;
 
             if (responseData.length != 0) {
-              upLinkContainer.innerHTML = 'Username:  '+responseData.first_name + ' ' + responseData.last_name +
+              upLinkContainer.innerHTML = 'Full name:  '+responseData.first_name + ' ' + responseData.last_name +
+                  '<br>Bank Name:  ' + responseData.bank_name +
                   '<br>Account Number:  ' + responseData.account_number + '<br>Phone Number:  ' + responseData.phone_number +
                   '<br>ID: ' + responseData.match_id;
             }
