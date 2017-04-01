@@ -40,7 +40,9 @@ class User::MatchesController < ApplicationController
       if Match.exists?(user_id: user_id, completion_status: 'pending')
         match = Match.find_by(user_id: user_id, completion_status: 'pending')
         up_link_user = User.find_by(id: match.matched_user_id)
-        account_number = Bank.find_by(user_id: up_link_user.id).account_number
+        up_link_user_bank = Bank.find_by(user_id: up_link_user.id)
+        bank_name = up_link_user_bank.name
+        account_number = up_link_user_bank.account_number
 
         render json: { status: 'SUCCESS', data: {
             first_name: up_link_user.first_name,
@@ -48,7 +50,8 @@ class User::MatchesController < ApplicationController
             phone_number: up_link_user.phone_number,
             user_id: up_link_user.id,
             match_id: match.id,
-            account_number: account_number
+            account_number: account_number,
+            bank_name: bank_name
         }}, status: :ok
       else
         render json: { status: 'SUCCESS', data: '' }, status: :ok
