@@ -89,8 +89,17 @@
             <h3 class="panel-title">Proof Of Payment (pop)</h3>
           </div>
           <div class="panel-body">
-          <%= link_to "upload pop", '/user/upload_proof', :id => "button_id", :class => "btn btn-default" %>
-          <%= link_to "confirm pop", '/user/confirm_proof', :id => "button_id", :class => "btn btn-default" %>
+            <form method="get" action="/user/upload_proof">
+              <button class="btn btn-default col-sm-4" role="button" type="submit">
+                upload pop
+              </button>
+            </form>
+            <div class="col-sm-4"></div>
+            <form method="get" action="/user/confirm_proof">
+              <button class="btn btn-default col-sm-4" role="button" type="submit">
+                confirm pop
+              </button>
+            </form>
           </div>
         </div>
         
