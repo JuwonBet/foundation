@@ -89,12 +89,16 @@
             <h3 class="panel-title">Proof Of Payment (pop)</h3>
           </div>
           <div class="panel-body">
-            <form method="get" action="/user/upload_proof">
-              <input type="submit" class="btn btn-default col-sm-4" value="upload pop">
+            <form method="get" action="/user/upload_proof" id="form-upload-pop">
+              <button class="btn btn-default col-sm-4" id="button-upload-pop" role="button" type="submit" style="cursor: pointer">
+                upload pop
+              </button>
             </form>
             <div class="col-sm-4"></div>
-            <form method="get" action="/user/confirm_proof">
-              <input type="submit" class="btn btn-default col-sm-4" value="confirm pop">
+            <form method="get" action="/user/confirm_proof" id="form-confirm-pop">
+              <button class="btn btn-default col-sm-4" id="button-confirm-pop" role="button" type="submit" style="cursor: pointer" >
+                confirm pop
+              </button>
             </form>
           </div>
         </div>
@@ -164,6 +168,14 @@
           }
         })
       }
+
+      document.getElementById('button-upload-pop').ontouchstart = function() {
+        document.getElementById('form-upload-pop').submit();
+      };
+
+      document.getElementById('button-confirm-pop').ontouchstart = function() {
+        document.getElementById('form-confirm-pop').submit();
+      };
 
       populateMatchContainers();
     </script>
