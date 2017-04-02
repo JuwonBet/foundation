@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -22,4 +23,9 @@ class User < ApplicationRecord
   def set_user_status
   	self.status ||= :deactivated
   end
+
+  def set_user_status_to_activated
+    self.status = :activated
+  end
+
 end

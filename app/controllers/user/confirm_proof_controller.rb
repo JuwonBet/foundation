@@ -44,6 +44,10 @@ class User::ConfirmProofController < ApplicationController
       match.completion_status = 'completed'
       match.save
 
+      down_link_user = User.find(match.user_id)
+      down_link_user.set_user_status_to_activated
+      down_link_user.save
+
       flash[:confirmation_successful] = 'Proof successfully confirmed.'
       redirect_to '/user/dashboard'
 

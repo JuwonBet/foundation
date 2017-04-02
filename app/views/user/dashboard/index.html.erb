@@ -101,10 +101,10 @@
       <div class="col-sm-12 col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">DOWNLINK</h3>
+            <h3 class="panel-title">DOWNLINKS</h3>
           </div>
           <div class="panel-body" id="container-downlink">
-            Awaiting Pairing
+
           </div>
         </div>
       </div>
@@ -146,10 +146,15 @@
 
           if (response.status == 'SUCCESS') {
             var responseData = response.data;
-
+            console.log(responseData);
             if (responseData.length != 0) {
-              downLinkContainer.innerHTML = 'Username: '+responseData.first_name + ' ' + responseData.last_name +
-                  '<br>Phone Number: ' + responseData.phone_number;
+              responseData.forEach(function (responseData) {
+                downLinkContainer.innerHTML += '<div class="col-sm-4">' + 'Username: '+responseData.first_name + ' ' + responseData.last_name +
+                    '<br>Phone Number: ' + responseData.phone_number + '</div>';
+              });
+
+            } else {
+              downLinkContainer.innerHTML = 'Awaiting Pairing.'
             }
           }
         })
