@@ -20,7 +20,6 @@ class User::MatchesController < ApplicationController
         else
           down_link_users = User.find_by(id: match[0].user_id)
         end
-        #down_link_user = User.find_by(id: match.user_id)
 
         if down_link_users.is_a?(Array)
           render json: { status: 'SUCCESS', data: [
