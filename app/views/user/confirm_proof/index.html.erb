@@ -43,6 +43,7 @@
             phoneNumberNode.setAttribute('class', 'col-sm-4');
             phoneNumberNode.innerHTML = 'Phone number: ' + upload.phone_number;
 
+            /*
             var downloadForm = document.createElement('form');
             downloadForm.setAttribute('method', 'get');
             downloadForm.setAttribute('action', '/user/confirm/proof/download/' + upload.id);
@@ -53,6 +54,7 @@
             downloadButton.innerHTML = 'Download proof';
 
             downloadForm.appendChild(downloadButton);
+            */
 
             var confirmForm = document.createElement('form');
             confirmForm.setAttribute('method', 'get');
@@ -61,13 +63,13 @@
             var confirmButton = document.createElement('button');
             confirmButton.setAttribute('class', 'btn btn-primary col-sm-2');
             confirmButton.setAttribute('role', 'button');
-            confirmButton.innerHTML = 'Confirm proof';
+            confirmButton.innerHTML = 'Confirm payment';
 
             confirmForm.appendChild(confirmButton);
 
             rowNode.appendChild(userNameNode);
             rowNode.appendChild(phoneNumberNode);
-            rowNode.appendChild(downloadForm);
+            //rowNode.appendChild(downloadForm);
             rowNode.appendChild(confirmForm);
 
             proofContainer.appendChild(rowNode);
