@@ -7,24 +7,10 @@ class User::PackagesController < ApplicationController
   def show
     begin
       selected_package_key = Integer(params[:id])
-      puts selected_package_key
       user_package = UserPackage.new
-      #puts current_user.inspect
       user_package.user_id = current_user.id
-      #user_package.package_id= 2
 
-      case selected_package_key
-        when 1
-          user_package.package_id= 2
-        when 2
-          user_package.package_id= 3
-        when 3
-          user_package.package_id= 4
-        when 4
-          user_package.package_id= 5
-        else
-      end
-
+      user_package.package_id= selected_package_key
       user_package.save!
 
       redirect_to new_user_bank_path

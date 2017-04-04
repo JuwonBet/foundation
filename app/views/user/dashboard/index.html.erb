@@ -7,6 +7,17 @@
 	<div class="container-fluid">
   <div class="row">
     <h3 class="text-center">Dashboard</h3>
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 lead" id="notice" style="box-shadow: 1px 1px 2px #888888; background-color: #f7f7f7">
+        <ul>
+          <li>Welcome to fund foundation Nigeria. Please take note of the following:</li>
+          <li>You will be paired with an uplink in 30 mins.</li>
+          <li>You have 24 hours to make payment and get confirmed.</li>
+          <li>Incomplete Registrations will be deleted by admins.</li>
+          <li>All Cyber Beggars should be reported to admin.</li>
+        </ul>
+      </div>
+    </div>
     <div class="col-sm-4 col-xs-12">
 
       <div class="panel panel-default">
@@ -145,7 +156,7 @@
               upLinkContainer.innerHTML = 'Full name:  '+responseData.first_name + ' ' + responseData.last_name +
                   '<br>Bank Name:  ' + responseData.bank_name +
                   '<br>Account Number:  ' + responseData.account_number + '<br>Phone Number:  ' + responseData.phone_number +
-                  '<br>Match ID: ' + responseData.match_id;
+                  '<br>Uplink ID: ' + responseData.match_id;
             }
           }
         });
@@ -157,6 +168,7 @@
             var responseData = response.data;
             console.log(responseData);
             if (responseData.length != 0) {
+              downLinkContainer.innerHTML = '';
               responseData.forEach(function (responseData) {
                 downLinkContainer.innerHTML += '<div class="col-sm-4">' + 'Username: '+responseData.first_name + ' ' + responseData.last_name +
                     '<br>Phone Number: ' + responseData.phone_number + '</div>';
