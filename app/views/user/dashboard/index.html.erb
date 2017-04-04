@@ -1,26 +1,10 @@
 
-<%= render(:partial=>"navbar") %>	
+<%= render(:partial=>"navbar") %>
 
-		<br>
-		<br>
-		<br>
-	<div class="container">
-   
-    <div class="notice notice-info">
-        <strong>IMPORTANT NOTICE</strong>   <span class="pull-right text-info readMore">Read</span>
-         <div class="desc">
-            
-            <p>
-                Welcome to FundFoundation Nigeria, you will be paired with an uplink in 30 mins<br>
-                You have 24 hours to make payment and get confirmed <br>
-                Incomplete Registrations will be deleted by admnis<br>
-                All Cyber Beggars should be reported to admin <br>
-            </p>        
-        </div>
-    </div>
- </div>
-						
-	<div class="container-fluid">
+<br>
+<br>
+<br>
+<div class="container-fluid">
   <div class="row">
     <h3 class="text-center">Dashboard</h3>
     <div class="row">
@@ -42,21 +26,21 @@
         </div>
         <table class="table">
           <thead>
-            <th>Personal Profile</th>
+          <th>Personal Profile</th>
           </thead>
           <tbody>
-              <tr>
-                <td>Name: <%= current_user.first_name %> <%= current_user.last_name %> </td>
-              </tr>
-              <tr>
-                <td>Email: <%= current_user.email %> </td>
-              </tr>
-              <tr>
-                <td>Phone Number: <%= current_user.phone_number %> </td>
-              </tr>
-              <tr>
-                <td>Account Status: <%= current_user.status.capitalize %> </td>
-              </tr>
+          <tr>
+            <td>Name: <%= current_user.first_name %> <%= current_user.last_name %> </td>
+          </tr>
+          <tr>
+            <td>Email: <%= current_user.email %> </td>
+          </tr>
+          <tr>
+            <td>Phone Number: <%= current_user.phone_number %> </td>
+          </tr>
+          <tr>
+            <td>Account Status: <%= current_user.status.capitalize %> </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -67,18 +51,18 @@
         </div>
         <table class="table">
           <thead>
-            <th>Bank Profile</th>
+          <th>Bank Profile</th>
           </thead>
           <tbody>
-              <tr>
-                <td>Bank: <%= current_user.bank.name %></td>
-              </tr>
-              <tr>
-                <td>Account Name: <%= current_user.bank.account_name %></td>
-              </tr>
-              <tr>
-                <td>Account Number: <%= current_user.bank.account_number %></td>
-              </tr>
+          <tr>
+            <td>Bank: <%= current_user.bank.name %></td>
+          </tr>
+          <tr>
+            <td>Account Name: <%= current_user.bank.account_name %></td>
+          </tr>
+          <tr>
+            <td>Account Number: <%= current_user.bank.account_number %></td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -103,12 +87,12 @@
             <h3 class="panel-title">Referral</h3>
           </div>
           <div class="panel-body">
-          <%= link_to "Invite a user", new_user_invitation_path, :id => "button_id", :class => "btn btn-default" %>
+            <%= link_to "Invite a user", new_user_invitation_path, :id => "button_id", :class => "btn btn-default" %>
           </div>
         </div>
 
       </div>
-      
+
       <div class="col-sm-6 col-xs-12">
 
         <div class="panel panel-default">
@@ -129,11 +113,11 @@
             </form>
           </div>
         </div>
-        
+
+      </div>
+
     </div>
-    
-  </div>
-  <div class="col-sm-8 col-xs-12">
+    <div class="col-sm-8 col-xs-12">
       <div class="col-sm-12 col-xs-12">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -144,7 +128,7 @@
           </div>
         </div>
       </div>
-</div>
+    </div>
     <script defer>
       var upLinkContainer = document.getElementById('container-uplink');
       var downLinkContainer = document.getElementById('container-downlink');
@@ -208,7 +192,7 @@
       populateMatchContainers();
     </script>
   </div>
-    <div class="row">
-      <%= render(:partial=>"footer")%>
-    </div>
+  <div class="row">
+    <%= render(:partial=>"footer")%>
   </div>
+</div>
