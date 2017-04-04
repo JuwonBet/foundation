@@ -89,15 +89,15 @@
             <h3 class="panel-title">Proof Of Payment (pop)</h3>
           </div>
           <div class="panel-body">
-            <form method="get" action="/user/upload_proof">
-              <button class="btn btn-default col-sm-4" role="button" type="submit">
-                upload pop
+            <form method="get" action="/user/upload_proof" id="form-upload-pop">
+              <button class="btn btn-default col-sm-5" id="button-upload-pop" role="button" type="submit" style="cursor: pointer">
+                assert payment
               </button>
             </form>
-            <div class="col-sm-4"></div>
-            <form method="get" action="/user/confirm_proof">
-              <button class="btn btn-default col-sm-4" role="button" type="submit">
-                confirm pop
+            <div class="col-sm-2"></div>
+            <form method="get" action="/user/confirm_proof" id="form-confirm-pop">
+              <button class="btn btn-default col-sm-5" id="button-confirm-pop" role="button" type="submit" style="cursor: pointer" >
+                confirm payment
               </button>
             </form>
           </div>
@@ -145,7 +145,7 @@
               upLinkContainer.innerHTML = 'Full name:  '+responseData.first_name + ' ' + responseData.last_name +
                   '<br>Bank Name:  ' + responseData.bank_name +
                   '<br>Account Number:  ' + responseData.account_number + '<br>Phone Number:  ' + responseData.phone_number +
-                  '<br>ID: ' + responseData.match_id;
+                  '<br>Match ID: ' + responseData.match_id;
             }
           }
         });
@@ -169,7 +169,18 @@
         })
       }
 
+      document.getElementById('button-upload-pop').ontouchstart = function() {
+        document.getElementById('form-upload-pop').submit();
+      };
+
+      document.getElementById('button-confirm-pop').ontouchstart = function() {
+        document.getElementById('form-confirm-pop').submit();
+      };
+
       populateMatchContainers();
     </script>
-
-<%= render(:partial=>"footer")%>
+  </div>
+    <div class="row">
+      <%= render(:partial=>"footer")%>
+    </div>
+  </div>
