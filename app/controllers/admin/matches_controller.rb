@@ -1,7 +1,9 @@
 class Admin::MatchesController < Admin::BaseController
 
 	def index
-		@users = User.all
+		@users = User.all.sort_by(&:created_at)
+    @users = @users.reverse
+    @matches = Match.all
 	end
 
 	def new
@@ -23,8 +25,13 @@ class Admin::MatchesController < Admin::BaseController
       end
   end
 
+  def retriever_match(user_id)
+    yield Match.find_by(user_id: user.id)
+  end
+
   private
   def match_params
   	params.require(:match).permit(:user_id, matched_user_id: [])
   end
+
 end
