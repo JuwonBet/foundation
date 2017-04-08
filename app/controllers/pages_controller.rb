@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   def index
      if current_user //returns nil if not logged in
-          @users = User.all
           render :dashboard
        end
     end
