@@ -6,11 +6,7 @@ class PagesController < ApplicationController
        end
     end
 
-    def dashboard
-       @users = User.all
-    end
-  end
-  
+      
   def contact
 
   end
