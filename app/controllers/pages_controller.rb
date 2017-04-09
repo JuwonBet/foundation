@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   def index
+    unless current_user.nil?
+      redirect_to '/user/dashboard'
+    end
   end
   
   def contact

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   authenticate :user do
   	namespace :user do
   		get '/dashboard', to: 'dashboard#index'
+      post '/dashboard/packages', to: 'dashboard#update_package'
       get '/banks/list', to: 'banks#list'
       get '/match/uplink', to: 'matches#get_up_link_matches'
       get '/match/downlink', to: 'matches#get_down_link_matches'

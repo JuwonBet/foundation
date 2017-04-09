@@ -18,6 +18,9 @@
         </ul>
       </div>
     </div>
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: "alert alert-info" %>
+    <% end %>
     <div class="col-sm-4 col-xs-12">
 
       <div class="panel panel-default">
@@ -40,6 +43,18 @@
           </tr>
           <tr>
             <td>Account Status: <%= current_user.status.capitalize %> </td>
+          </tr>
+          <tr>
+            <td>Update package (current package: <%= @current_package %>)
+              <%= form_tag('/user/dashboard/packages', method: 'post', style: 'margin-top: 10px') do  %>
+                  <select name="package_select">
+                    <% @packages.each do |package| %>
+                        <option value="<%= package.id %>"><%= package.name %></option>
+                    <% end %>
+                  </select>
+                  <button type="submit">Update</button>
+              <% end %>
+            </td>
           </tr>
           </tbody>
         </table>
