@@ -1,14 +1,14 @@
 $(document).ready(function(){
+    $(".readMore").click(function(){
+        var instance = $(this);
 
-
-$(".readMore").click(function(){
-var This=$(this);    
-$(this).next().toggle(function(){
-    if(This.text()=="Hide"){
-      This.text("Read")
-    }
-    else{
-        This.text("Hide")
-    }
-})
-});});
+        instance.next().toggle( function() {
+            if(instance.text() == "Hide"){
+                instance.text("Read")
+            }
+            else{
+                instance.text("Hide")
+            }
+        })
+    });
+});
