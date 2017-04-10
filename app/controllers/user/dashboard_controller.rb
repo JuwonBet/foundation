@@ -22,7 +22,7 @@ class User::DashboardController < User::BaseController
 			flash[:uncompleted_donations] = 'You have already been matched with two individuals. Please complete these matches first'
 			redirect_to '/user/dashboard'
 		else
-			prospective_up_links = User.where(status: :activated).select { |user| Match.where(matched_user_id: user.id).length < 2 && (UserPackage.find_by(user_id: user.id).package_id == UserPackage.find_by(user_id: current_user.id).package_id) }
+			prospective_up_links = User.where(status: :activated).sort_by(&:created_at).select { |user| Match.where(matched_user_id: user.id).length < 2 && (UserPackage.find_by(user_id: user.id).package_id == UserPackage.find_by(user_id: current_user.id).package_id) }
 
 			if prospective_up_links.length != 0
 				up_link = prospective_up_links[0]
