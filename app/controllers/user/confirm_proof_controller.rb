@@ -41,12 +41,14 @@ class User::ConfirmProofController < ApplicationController
     if params[:id]
       proof_upload = ProofUpload.find(params[:id])
       match = Match.find(proof_upload.match_id)
-      match.completion_status = 'completed'
-      match.save
+      proof_upload.destroy
+      match.destroy
 
       down_link_user = User.find(match.user_id)
       down_link_user.set_user_status_to_activated
       down_link_user.save
+
+      current_user.deactivated!
 
       flash[:confirmation_successful] = 'Proof successfully confirmed.'
       redirect_to '/user/dashboard'

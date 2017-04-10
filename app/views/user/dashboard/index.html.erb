@@ -1,6 +1,7 @@
 
 <%= render(:partial=>"navbar") %>
 <script src="../../assets/notice.js"></script>
+<style src="../../assets/notice.css"></style>
 <br>
 <br>
 <br>
@@ -20,7 +21,7 @@
         </ul>
       </div>
     </div>
-    <% flash.each do |name, msg| %>
+    <% flash.each do |_, msg| %>
         <%= content_tag :div, msg, class: "alert alert-info" %>
     <% end %>
     <div class="col-sm-4 col-xs-12">
@@ -145,7 +146,18 @@
           </div>
         </div>
       </div>
+      <% unless @current_user.activated? || @current_user.matches.where(completion_status: 'pending').length > 1 %>
+          <div class="col-sm-12 col-sm-12" id="donation-container">
+            <div class="panel panel-default">
+              <%= form_tag('/user/dashboard/donate', method: 'post') do %>
+                  <button class="btn btn-primary" style="margin: 10px">Donate</button>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
     </div>
+
+
     <script defer>
       var upLinkContainer = document.getElementById('container-uplink');
       var downLinkContainer = document.getElementById('container-downlink');

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   	namespace :user do
   		get '/dashboard', to: 'dashboard#index'
       post '/dashboard/packages', to: 'dashboard#update_package'
+      post '/dashboard/donate', to: 'dashboard#fire_donate_request'
       get '/banks/list', to: 'banks#list'
       get '/match/uplink', to: 'matches#get_up_link_matches'
       get '/match/downlink', to: 'matches#get_down_link_matches'
