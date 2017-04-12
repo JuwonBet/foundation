@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-      <% unless @current_user.activated? || @current_user.matches.where(completion_status: 'pending').length > 1 %>
+      <% unless @current_user.activated? || @current_user.has_existing_up_link? %>
           <div class="col-sm-12 col-sm-12" id="donation-container">
             <div class="panel panel-default">
               <%= form_tag('/user/dashboard/donate', method: 'post') do %>

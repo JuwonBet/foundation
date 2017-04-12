@@ -28,4 +28,8 @@ class User < ApplicationRecord
     self.status = :activated
   end
 
+  def has_existing_up_link?
+    Match.exists?(user_id: self.id)
+  end
+
 end
