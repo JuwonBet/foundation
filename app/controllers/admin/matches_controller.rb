@@ -26,7 +26,7 @@ class Admin::MatchesController < Admin::BaseController
   end
 
   def retriever_match(user_id)
-    yield Match.find_by(user_id: user.id)
+    yield Match.find_by(user_id: user_id)
   end
 
   private
