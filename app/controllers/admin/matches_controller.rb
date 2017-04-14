@@ -14,11 +14,15 @@ class Admin::MatchesController < Admin::BaseController
     @user = User.find(match_params[:user_id])
     #@user.matched_user_ids = match_params[:matched_user_id]
 
-    match = Match.new
-    match.user = @user
-    match.matched_user = User.find(match_params[:matched_user_id])
+    if Match.exists?(user_id: match_params[:user_id], matched_user_id: match_params[:matched_user_id])
+      flash[:match_exists] = 'That match already exists.'
+      redirect_to '/admin/matches/new'
+    else
+      match = Match.new
+      match.user = @user
+      match.matched_user = User.find_by(id: match_params[:matched_user_id])
 
-     respond_to do |format|
+      respond_to do |format|
         if match.save
           format.html { redirect_to admin_dashboard_path, notice: 'matches were successfully created.' }
           # format.json { render :show, status: :created, location: @match }
@@ -27,6 +31,7 @@ class Admin::MatchesController < Admin::BaseController
           # format.json { render json: @match.errors, status: :unprocessable_entity }
         end
       end
+    end
   end
 
   def retriever_match(user_id)
