@@ -19,6 +19,7 @@ class User < ApplicationRecord
   enum status: [:activated, :deactivated]
 
   before_save :set_user_status, if: :new_record?
+  before_update :control_user_status
 
   def set_user_status
   	self.status ||= :deactivated
@@ -30,6 +31,15 @@ class User < ApplicationRecord
 
   def has_existing_up_link?
     Match.exists?(user_id: self.id)
+  end
+
+
+
+  private
+  def control_user_status
+    if self.match_count > 1
+      self.status= :deactivated
+    end
   end
 
 end

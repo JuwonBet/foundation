@@ -24,6 +24,9 @@ class Admin::MatchesController < Admin::BaseController
 
       respond_to do |format|
         if match.save
+          matched_user = User.find_by(id: match_params[:matched_user_id])
+          matched_user.match_count += 1
+          matched_user.save
           format.html { redirect_to admin_dashboard_path, notice: 'matches were successfully created.' }
           # format.json { render :show, status: :created, location: @match }
         else

@@ -32,6 +32,9 @@ class User::DashboardController < User::BaseController
 				match.matched_user = up_link
 				match.save
 
+				up_link.match_count += 1
+				up_link.save
+
 				redirect_to '/user/dashboard'
 			else
 				flash[:unable_to_match] = 'We were unable to match you at this moment. Please try again shortly.'
