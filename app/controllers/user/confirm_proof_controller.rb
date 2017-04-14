@@ -12,7 +12,7 @@ class User::ConfirmProofController < ApplicationController
       if matches.length >= 1
         matches.each do |match|
           proof_upload = ProofUpload.find_by(match_id: match.id)
-          proof_upload_items.push(proof_upload)
+          proof_upload_items.push(proof_upload) unless proof_upload.blank?
         end
 
         render json: { status: 'SUCCESS', data: proof_upload_items }, status: :ok
